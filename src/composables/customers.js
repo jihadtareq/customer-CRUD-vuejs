@@ -23,14 +23,14 @@ export default function useCustomers()
     const storeCustomer = async (data) => {
         try
         {
-            await axios.post("users",data);
+            await axios.post("users/register",data);
             await router.push({name:"customers"});
 
         }catch(error)
         {
             if(error.response.status === 422)
             {
-                errors.value == error.response.data.errors;
+                errors.value = error.response.data.errors;
             }
         }
 
@@ -46,7 +46,7 @@ export default function useCustomers()
         {
             if(error.response.status === 422)
             {
-                errors.value == error.response.data.errors;
+                errors.value = error.response.data.errors;
             }
         }
 
@@ -66,7 +66,7 @@ export default function useCustomers()
         {
             if(error.response.status === 422)
             {
-                errors.value == error.response.data.errors;
+                errors.value = error.response.data.errors;
             }
         }
 

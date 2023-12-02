@@ -8,7 +8,7 @@
 <template>
     <div class="mt-12">
         <div class="flex justify-end m-2 p-2">
-            <RouterLink :to="{name: 'customerCreate' }">New Customer</RouterLink>
+            <RouterLink :to="{name: 'customerCreate' }" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 rounded text-white">New Customer</RouterLink>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
