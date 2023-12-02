@@ -12,6 +12,26 @@
     picture:""
  });
 
+ const image = {
+  data() {
+    return {
+      // Other form data
+      file: null,
+    };
+  },
+  methods: {
+    handleFileChange(event) {
+      // Update the 'file' data property when a file is selected
+      this.file = event.target.files[0];
+    },
+    submitForm() {
+      // Create a FormData object and append the file to it
+      const formData = new FormData();
+      formData.append('picture', this.file);
+    },
+  },
+};
+
 </script>
 <template>
     <div class="mt-12">
@@ -55,7 +75,11 @@
             </div>
             <div class="mb-2">
                 <label for="picture" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Avatar</label>
-                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="picture" type="file">
+                <input 
+                    @change="handleFileChange()"
+                    accept="image/*"
+                    capture 
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="picture" type="file">
             </div>
             
             <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
