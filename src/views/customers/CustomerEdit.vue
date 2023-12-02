@@ -30,26 +30,13 @@
                     </div>
                 </div>
             </div>
-            <div class="grid gap-6 mb-6 md:grid-cols-2">
-                <div>
-                    <label for="customer_types" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                    <select v-model="customer.typeId" id="customer_types" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Choose a type</option>
-                        <option value="1">Merchant</option>
-                        <option value="2">Customer</option>
-                    </select>
-                    <div v-if="errors.typeId">
-                        <span class="text-sm text-red-400">{{ errors.typeId[0] }}</span>
-                    </div>
-                </div>
-                <div>
+            <div class="mb-2">
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email address</label>
                     <input v-model="customer.email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="john.doe@company.com" required>
                     <div v-if="errors.email">
                         <span class="text-sm text-red-400">{{ errors.email[0] }}</span>
                     </div>
-                </div> 
-            </div>
+            </div> 
             <div class="mb-2">
                 <label for="picture" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Avatar</label>
                 <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="picture" type="file">

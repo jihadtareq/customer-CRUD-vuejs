@@ -2,7 +2,7 @@ import {ref} from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 
-axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1/"
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1/customers/"
 
 export default function useCustomers() 
 {
@@ -12,18 +12,18 @@ export default function useCustomers()
     const router = useRouter();
 
     const getCustomers = async () =>{
-        const response = await axios.get("users");
+        const response = await axios.get("customers");
         customers.value = response.data.data;
     };
     const getCustomer = async (id) =>{
-        const response = await axios.get("users/"+id+"/profile");
+        const response = await axios.get("customers/"+id);
         customer.value = response.data.data;
     };
 
     const storeCustomer = async (data) => {
         try
         {
-            await axios.post("users/register",data);
+            await axios.post("customers",data);
             await router.push({name:"customers"});
 
         }catch(error)
@@ -39,7 +39,7 @@ export default function useCustomers()
     const updateCustomer = async (id) => {
         try
         {
-            await axios.put("users/"+ id, customer.value);
+            await axios.put("customers/"+ id, customer.value);
             await router.push({name:"customers"});
 
         }catch(error)
@@ -59,7 +59,7 @@ export default function useCustomers()
             {
                 return;
             }
-            await axios.delete("users/"+ id);
+            await axios.delete("customers/"+ id);
             await getCustomers();
 
         }catch(error)
