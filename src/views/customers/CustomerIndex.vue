@@ -33,8 +33,9 @@
                         <td class="px-6 py-4">{{ customer.name }}</td>
                         <td class="px-6 py-4">{{ customer.phone }}</td>
                         <td class="px-6 py-4">{{ customer.email }}</td>
-                        <td class="px-6 py-4 text-right">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <td class="px-6 py-4 text-right space-x-2">
+                            <RouterLink :to="{name: 'customerEdit' , params : {id: customer.id} }" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded text-white">Edit</RouterLink>
+                            <button class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded text-white"> Delete</button>
                         </td>
                     </tr>
                 </tbody>
