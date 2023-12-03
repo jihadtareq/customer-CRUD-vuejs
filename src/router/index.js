@@ -6,23 +6,23 @@ const router = createRouter({
     {
       path: '/',
       name: 'customers',
-      component: () => import('../views/customers/CustomerIndex.vue')
+      component: () => import('../components/customers/CustomerIndex.vue')
     },
     {
       path: '/customers/create',
       name: 'customerCreate',
-      component: () => import('../views/customers/CustomerCreate.vue')
+      component: () => import('../components/customers/CustomerCreate.vue')
     },
     {
       path: '/customers/:id/edit',
       name: 'customerEdit',
-      component: () => import('../views/customers/CustomerEdit.vue'),
+      component: () => import('../components/customers/CustomerEdit.vue'),
       props:true,
     },
     {
       path: '/customers/:id/show',
       name: 'customerShow',
-      component: () => import('../views/customers/CustomerShow.vue')
+      component: () => import('../components/customers/CustomerShow.vue')
     }
   ]
 })
