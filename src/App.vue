@@ -5,11 +5,11 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
 
-    <div class="max-w-7xl mx-auto">
-      <nav class="p-2">
+    <!-- <div class="max-w-7xl mx-auto"> -->
+      <nav class="p-2 navBar">
         <RouterLink class="px-4 py-2 mr-4 bg-indigo-600 hover:bg-indigo-800 rounded text-white" to="/">Customer List</RouterLink>
       </nav>
-    </div>
+    <!-- </div> -->
   </header>
 
   <main class="max-w-7xl mx-auto min-h-screen">

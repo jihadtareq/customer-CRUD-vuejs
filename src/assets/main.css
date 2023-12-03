@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navBar
+{
+    background-color: rgb(79 70 229);
+    padding: 15px 30px;
+
+}
+header
+{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
