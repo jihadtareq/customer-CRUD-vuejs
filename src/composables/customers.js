@@ -36,10 +36,10 @@ export default function useCustomers()
 
     };
 
-    const updateCustomer = async (id) => {
+    const updateCustomer = async (id,data) => {
         try
         {
-            await axios.put("customers/"+ id, customer.value);
+            await axios.put("customers/"+ id, data);
             await router.push({name:"customers"});
 
         }catch(error)

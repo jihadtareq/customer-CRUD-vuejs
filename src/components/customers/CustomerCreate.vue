@@ -1,43 +1,56 @@
-<script setup>
- import { reactive } from 'vue';
- import useCustomers from '../../composables/customers';
+<script>
+import { reactive } from 'vue';
+import useCustomers from '../../composables/customers';
 
- const {storeCustomer,errors} = useCustomers();
- const form = reactive({
-    name: "",
-    phone: "",
-    email: "",
-    typeId:"",
-    desicription:"",
-    picture:""
- });
+export default {
+  setup() {
+    const { storeCustomer, errors } = useCustomers();
 
- const image = {
-  data() {
-    return {
-      // Other form data
+    const form = reactive({
+      name: "",
+      phone: "",
+      email: "",
+      description: "", // Corrected property name
+      picture: "",
+    });
+
+    const image = reactive({
       file: null,
-    };
-  },
-  methods: {
-    handleFileChange(event) {
+    });
+
+    const handleFileChange = (event) => {
       // Update the 'file' data property when a file is selected
-      this.file = event.target.files[0];
-    },
-    submitForm() {
-      // Create a FormData object and append the file to it
+      image.file = event.target.files[0];
+    };
+    const submitForm = () => {
+
+      // Create a FormData object
       const formData = new FormData();
-      formData.append('picture', this.file);
-    },
+      console.log( image.file)
+
+      // Append form data to formData
+      formData.append('name', form.name);
+      formData.append('phone', form.phone);
+      formData.append('email', form.email);
+      formData.append('description', form.description);
+      
+      // Append the file to formData
+      formData.append('picture', image.file);
+      console.log( formData)
+
+      // Call the storeCustomer method with formData
+      storeCustomer(formData);
+    };
+
+    return { form, image, errors, handleFileChange, submitForm };
   },
 };
-
 </script>
+
 <template>
-    <div class="mt-12">
-        <form @submit.prevent="storeCustomer(form)">
-           
-            <div class="grid gap-6 mb-6 md:grid-cols-2">
+  <div class="mt-12">
+    <form @submit.prevent="submitForm">
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer Name</label>
                     <input v-model="form.name" type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
@@ -64,7 +77,7 @@
             <div class="mb-2">
                 <label for="picture" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Avatar</label>
                 <input 
-                    @change="handleFileChange()"
+                    @change="handleFileChange"
                     accept="image/*"
                     capture 
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="picture" type="file">
@@ -148,12 +161,12 @@
                     </div>
                 </div>
                 <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
-                    <label for="desicription" class="sr-only"></label>
-                    <textarea v-model="form.desicription" id="desicription" rows="8" class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write an article..." required></textarea>
+                    <label for="description" class="sr-only"></label>
+                    <textarea v-model="form.description" id="description" rows="8" class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Write an article..." required></textarea>
                 </div>
             </div>
     
-            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">Submit</button>
-        </form>
-    </div>
+      <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">Submit</button>
+    </form>
+  </div>
 </template>

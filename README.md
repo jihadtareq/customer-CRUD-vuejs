@@ -17,6 +17,7 @@ Before you start, make sure you have the following installed:
 
    ```bash
    git clone https://github.com/jihadtareq/customer-CRUD-vuejs.git
+   ```
 
 ### Compile and Hot-Reload for Development
 

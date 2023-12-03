@@ -1,19 +1,53 @@
-<script setup>
- import { onMounted, reactive } from 'vue';
+<script >
+ import { onMounted,reactive } from 'vue';
  import useCustomers from '../../composables/customers';
 
- const {customer,getCustomer,updateCustomer,errors} = useCustomers();
- const props = defineProps({
+ export default {
+    props: {
     id: {
-        required:true,
-        type:String,
-    }
- });
- onMounted(() => getCustomer(props.id));
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
+    const { customer, getCustomer, updateCustomer, errors } = useCustomers();
+
+    onMounted(() => getCustomer(props.id));
+
+
+    const image = reactive({
+      file: null,
+    });
+
+    const handleFileChange = (event) => {
+    
+      // Update the 'file' data property when a file is selected
+      image.file = event.target.files[0];
+    };
+    const submitForm = () => {
+      // Create a FormData object
+      const formData = new FormData();
+
+      // Append form data to formData
+      formData.append('name', customer.value.name);
+      formData.append('phone', customer.value.phone);
+      formData.append('email', customer.value.email);
+      formData.append('description', customer.value.description);
+      
+      // Append the file to formData
+      formData.append('picture', image.file);
+
+      // Call the storeCustomer method with formData
+      updateCustomer(props.id,formData);
+    };
+
+    return { customer,image, errors, handleFileChange, submitForm };
+  },
+};
 </script>
 <template>
     <div class="mt-12">
-        <form @submit.prevent="updateCustomer($route.params.id)">
+        <form @submit.prevent="submitForm">
             <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Customer Name</label>
@@ -39,7 +73,11 @@
             </div> 
             <div class="mb-2">
                 <label for="picture" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Avatar</label>
-                <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="picture" type="file">
+                <input 
+                @change="handleFileChange"
+                    accept="image/*"
+                    capture 
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="picture" type="file">
             </div>
 
             <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
