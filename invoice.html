@@ -38,6 +38,7 @@
             .merchant
             {
                 border-radius: 15px 1px 1px 1px;
+                border: 1.5px solid green;
             }
             .billed-to
             {
@@ -61,18 +62,15 @@
                 border-bottom: hidden;
 
             }
+            
 
             /* th:nth-child(-n+3) {
               border-right: 2px solid #ff0000;
             } */
             .commercial-col{
-                border: 1.5px solid green;
                 background-color: aliceblue;
             }
 
-            .info-col{
-                border: 2px solid green;
-            }
             .product-info
             {
                 border:green solid
@@ -84,6 +82,10 @@
                 padding: 12px;
                 border: 2px solid green;
                 margin:10px
+            }
+            .invoice-title {
+                display: flex;
+                justify-content: space-between;
             }
         </style>
     </head>
@@ -101,19 +103,22 @@
                                         this will change according to the
                                         data entered later -->
                                        <img src=
-                                 "https://chart.googleapis.com/chart?cht=qr&chl=Hello+World&chs=160x160&chld=L|0"
+                                     "https://chart.googleapis.com/chart?cht=qr&chl=Hello+World&chs=160x160&chld=L|0"
                                          class="qr-code img-thumbnail img-responsive" />
                                </div>
-                               <div class="col-lg-6 col-md-6 col-sm-6 invoice-title">
-                               <h4 class="float-end font-size-15">Invoice #DS0204 <span class="badge bg-success font-size-12 ms-2">Paid</span></h4>
-                               <!-- <div class="mb-4">
-                                     <h2 class="mb-1 text-muted"></h2>
-                               </div>
-                               <div class="text-muted">
-                                   <p class="mb-1">3184 Spruce Drive Pittsburgh, PA 15201</p>
-                                   <p class="mb-1"><i class="uil uil-envelope-alt me-1"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8cf4f5f6ccb5b4bba2efe3e1">[email&#160;protected]</a></p>
-                                   <p><i class="uil uil-phone me-1"></i> 012-345-6789</p>
-                               </div> -->
+                               <div class="col-lg-6 col-md-6 col-sm-6 row invoice-title">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 mb-4" style="border: 2px solid green;border-radius: 7px;" >
+                                        <h4 class="font-size-15 text-center">Invoice #508273</h4>
+                                            <h2 class="text-muted"></h2>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 text-muted text-center" style="border: 2px solid green;border-radius: 7px;display: flex;flex-direction: column;justify-content: space-evenly;">
+                                        <h5 class="mb-1">Serial Number</h5>
+                                        <p> SME0303</p>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 text-muted text-center" style="border: 2px solid green;border-radius: 7px;display: flex;flex-direction: column;justify-content: space-evenly;">
+                                        <h5 class="mb-1">Date</h5>
+                                        <h6>12-5-2023</h6>
+                                    </div>
                                </div>
 
                             </div>
@@ -139,7 +144,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="mb-2">
+                                        <tr class="mb-2" style="border-bottom: hidden;">
                                             <td>...</td>
                                             <td>
                                                 <div>
